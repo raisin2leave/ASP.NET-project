@@ -9,20 +9,29 @@ public class Product
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Podaj nazwę produktu")]
-    [StringLength(100, ErrorMessage = "Nazwa max 100 znaków")]
+    [Display(Name = "Nazwa produktu")]
     public string Name { get; set; }
 
-    [Required(ErrorMessage = "Podaj cenę")]
-    [Range(0.01, 100000, ErrorMessage = "Cena musi być większa od 0")]
+    [Required]
+    [Range(0.01, 100000)]
+    [Display(Name = "Cena")]
     public decimal Price { get; set; }
 
-    [Required(ErrorMessage = "Podaj producenta")]
+    [Required]
+    [Display(Name = "Producent")]
     public string Manufacturer { get; set; }
 
-    [Required(ErrorMessage = "Podaj datę produkcji")]
     [DataType(DataType.Date)]
+    [Display(Name = "Data produkcji")]
     public DateTime ProductionDate { get; set; }
 
-    [StringLength(500, ErrorMessage = "Opis max 500 znaków")]
-    public string Description { get; set; }
+    [StringLength(500)]
+    [Display(Name = "Opis")]
+    public string? Description { get; set; }
+
+    [Display(Name = "Priorytet")]
+    public ProductCategory Category { get; set; }
+
+    [HiddenInput]
+    public DateTime Created { get; set; }
 }

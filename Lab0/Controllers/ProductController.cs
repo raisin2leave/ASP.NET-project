@@ -5,77 +5,63 @@ namespace Lab0.Controllers;
 
 public class ProductController : Controller
 {
-    static Dictionary<int, Product> _products = new();
-    
-    public IActionResult Index()
+    private readonly IProductService _service;
+
+    public ProductController(IProductService service)
     {
-        return View(_products);
+        _service = service;
     }
-    
+
+    public IActionResult Index() => View(_service.GetAll());
+
     [HttpGet]
-    public IActionResult Create()
-    {
-        return View();
-    }
-    
+    public IActionResult Create() => View();
+
     [HttpPost]
     public IActionResult Create(Product model)
     {
-        if (ModelState.IsValid)
-        {
-            int id = _products.Keys.Count == 0 ? 1 : _products.Keys.Max() + 1;
-            model.Id = id;
-            _products.Add(model.Id, model);
+        if (!ModelState.IsValid)
+            return View(model);
 
-            return RedirectToAction("Index");
-        }
-
-        return View(model);
+        _service.Add(model);
+        return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     public IActionResult Details(int id)
     {
-        if (_products.ContainsKey(id))
-            return View(_products[id]);
-
-        return NotFound();
+        var product = _service.GetById(id);
+        return product == null ? NotFound() : View(product);
     }
-    
+
     [HttpGet]
     public IActionResult Edit(int id)
     {
-        if (_products.ContainsKey(id))
-            return View(_products[id]);
-
-        return NotFound();
+        var product = _service.GetById(id);
+        return product == null ? NotFound() : View(product);
     }
-    
+
     [HttpPost]
     public IActionResult Edit(Product model)
     {
-        if (ModelState.IsValid)
-        {
-            _products[model.Id] = model;
-            return RedirectToAction("Index");
-        }
+        if (!ModelState.IsValid)
+            return View(model);
 
-        return View(model);
+        _service.Update(model);
+        return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     public IActionResult Delete(int id)
     {
-        if (_products.ContainsKey(id))
-            return View(_products[id]);
-
-        return NotFound();
+        var product = _service.GetById(id);
+        return product == null ? NotFound() : View(product); 
     }
-    
-    [HttpPost]
+
+    [HttpPost, ActionName("Delete")]
     public IActionResult DeleteConfirmed(int id)
     {
-        _products.Remove(id);
+        _service.Delete(id);
         return RedirectToAction("Index");
     }
 }
