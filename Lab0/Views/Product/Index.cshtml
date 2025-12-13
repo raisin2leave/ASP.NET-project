@@ -1,0 +1,31 @@
+@model Dictionary<int, Lab0.Models.Product>
+
+@{
+    ViewBag.Title = "Lista produktów";
+    Layout = "_Layout";
+}
+
+<h2>Lista produktów</h2>
+
+<a class="btn btn-success mb-2" asp-action="Create">Dodaj produkt</a>
+
+<table class="table">
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+        <th>Akcje</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Value.Name</td>
+            <td>@item.Value.Price</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Value.Id">Edytuj</a> |
+                <a asp-action="Details" asp-route-id="@item.Value.Id">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.Value.Id">Usuń</a>
+            </td>
+        </tr>
+    }
+</table>
