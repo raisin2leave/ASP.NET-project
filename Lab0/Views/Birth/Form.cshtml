@@ -1,0 +1,21 @@
+@model Lab0.Models.Birth
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<form method="POST" action="Result">
+    <div class="mb-3">
+        <label>Imię</label>
+        <input class="form-control" type="text" name="Name"/>
+    </div>
+
+    <div class="mb-3">
+        <label>Data urodzenia</label>
+        <input class="form-control" type="date" name="Date"/>
+    </div>
+
+    <button class="btn btn-primary">Wyślij</button>
+</form>
+

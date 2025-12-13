@@ -6,4 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\CalculatorCopntroller\Form.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\CalculatorCopntroller\Result.cshtml" />
+    </ItemGroup>
+
 </Project>

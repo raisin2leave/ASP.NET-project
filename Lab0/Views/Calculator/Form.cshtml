@@ -1,0 +1,39 @@
+@model Lab0.Models.Calculator
+
+@{
+    ViewBag.Title = "Kalkulator";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-6">
+            <h2>Kalkulator</h2>
+
+            <form asp-action="Result" asp-controller="Calculator" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Liczba 1</label>
+                    <input class="form-control" type="number" name="X" step="0.00001" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Operator</label>
+                    <select class="form-control" name="Operator">
+                        <option value="Add">+</option>
+                        <option value="Sub">−</option>
+                        <option value="Mul">×</option>
+                        <option value="Div">÷</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Liczba 2</label>
+                    <input class="form-control" type="number" name="Y" step="0.00001" />
+                </div>
+
+                <button class="btn btn-primary" type="submit">Oblicz</button>
+            </form>
+        </div>
+    </div>
+</div>
