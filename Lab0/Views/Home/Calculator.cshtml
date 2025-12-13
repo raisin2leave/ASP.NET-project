@@ -1,0 +1,19 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+else
+{
+    <p>
+        Wynik działania dla 
+        @ViewBag.A @ViewBag.Op @ViewBag.B =
+        <strong>@ViewBag.Result</strong>
+    </p>
+}

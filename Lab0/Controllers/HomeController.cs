@@ -22,6 +22,42 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult About()
+    {
+        return View();
+    }
+    public enum Operator
+    {
+        Unknown,
+        Add,
+        Mul,
+        Sub,
+        Div
+    }
+    public IActionResult Calculator(Operator op, double? a, double? b)
+    {
+        if (a == null || b == null)
+        {
+            ViewBag.Error = "Brak parametru a lub b";
+            return View();
+        }
+
+        double? result = op switch
+        {
+            Operator.Add => a + b,
+            Operator.Sub => a - b,
+            Operator.Mul => a * b,
+            Operator.Div => b != 0 ? a / b : null,
+            _ => null
+        };
+
+        ViewBag.Op = op;
+        ViewBag.A = a;
+        ViewBag.B = b;
+        ViewBag.Result = result;
+
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
