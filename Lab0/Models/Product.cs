@@ -29,7 +29,7 @@ public class Product
     [Display(Name = "Opis")]
     public string? Description { get; set; }
 
-    [Display(Name = "Priorytet")]
+    [Display(Name = "Kategoria")]
     public ProductCategory Category { get; set; }
 
     [HiddenInput]

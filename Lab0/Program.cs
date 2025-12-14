@@ -1,4 +1,8 @@
+using Lab0.Data;
 using Lab0.Models;
+using Lab0.Models.Providers;
+using Lab0.Models.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lab0;
 
@@ -12,7 +16,11 @@ public class Program
         builder.Services.AddControllersWithViews();
         
         builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
-        builder.Services.AddSingleton<IProductService, MemoryProductService>();
+        builder.Services.AddScoped<IProductService, EFProductService>();
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite(
+                builder.Configuration.GetConnectionString("DefaultConnection")
+            ));
 
         var app = builder.Build();
         

@@ -1,4 +1,4 @@
-namespace Lab0.Models;
+namespace Lab0.Models.Services;
 
 public interface IProductService
 {

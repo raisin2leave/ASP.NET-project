@@ -1,4 +1,6 @@
-namespace Lab0.Models;
+using Lab0.Models.Providers;
+
+namespace Lab0.Models.Services;
 
 public class MemoryProductService : IProductService
 {

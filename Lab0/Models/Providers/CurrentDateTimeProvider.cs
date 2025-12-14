@@ -1,4 +1,4 @@
-namespace Lab0.Models;
+namespace Lab0.Models.Providers;
 
 public class CurrentDateTimeProvider : IDateTimeProvider
 {
