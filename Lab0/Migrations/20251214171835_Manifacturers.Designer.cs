@@ -3,6 +3,7 @@ using System;
 using Lab0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab0.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251214171835_Manifacturers")]
+    partial class Manifacturers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
@@ -73,6 +76,11 @@ namespace Lab0.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ManufacturerId")
                         .HasColumnType("INTEGER");
 
@@ -99,8 +107,9 @@ namespace Lab0.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            Created = new DateTime(2025, 12, 14, 18, 35, 4, 250, DateTimeKind.Local).AddTicks(3910),
+                            Created = new DateTime(2025, 12, 14, 18, 18, 34, 922, DateTimeKind.Local).AddTicks(8670),
                             Description = "Business laptop",
+                            Manufacturer = "",
                             ManufacturerId = 2,
                             Name = "Laptop",
                             Price = 4500m,
@@ -110,8 +119,9 @@ namespace Lab0.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            Created = new DateTime(2025, 12, 14, 18, 35, 4, 264, DateTimeKind.Local).AddTicks(1840),
+                            Created = new DateTime(2025, 12, 14, 18, 18, 34, 936, DateTimeKind.Local).AddTicks(6810),
                             Description = "Laser printer",
+                            Manufacturer = "",
                             ManufacturerId = 3,
                             Name = "Printer",
                             Price = 1200m,

@@ -26,9 +26,11 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Manufacturer" class="form-label"></label>
-                    <input asp-for="Manufacturer" class="form-control"/>
-                    <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                    <label asp-for="ManufacturerId" class="form-label">Producent</label>
+                    <select asp-for="ManufacturerId" asp-items="@Model.Manufacturers" class="form-control">
+                        <option value="">Wybierz producenta</option>
+                    </select>
+                    <span asp-validation-for="ManufacturerId" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">

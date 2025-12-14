@@ -27,6 +27,7 @@ public class EFProductService : IProductService
     public List<Product> GetAll()
     {
         return _context.Products
+            .Include(p => p.ManufacturerEntity) // include related manufacturer
             .AsNoTracking()
             .Select(ProductMapper.FromEntity)
             .ToList();
@@ -34,7 +35,10 @@ public class EFProductService : IProductService
 
     public Product? GetById(int id)
     {
-        var entity = _context.Products.Find(id);
+        var entity = _context.Products
+            .Include(p => p.ManufacturerEntity) // include related manufacturer
+            .FirstOrDefault(p => p.Id == id);
+
         return entity is null ? null : ProductMapper.FromEntity(entity);
     }
 
@@ -52,10 +56,10 @@ public class EFProductService : IProductService
     {
         var entity = _context.Products.Find(product.Id);
         if (entity == null) return false;
-        
+
         entity.Name = product.Name;
         entity.Price = product.Price;
-        entity.Manufacturer = product.Manufacturer;
+        entity.ManufacturerId = product.ManufacturerId; // use foreign key
         entity.ProductionDate = product.ProductionDate;
         entity.Description = product.Description;
         entity.Category = product.Category;
@@ -63,5 +67,13 @@ public class EFProductService : IProductService
         _context.Products.Update(entity);
         _context.SaveChanges();
         return true;
+    }
+
+    // New method: get all manufacturers
+    public List<ManufacturerEntity> GetAllManufacturers()
+    {
+        return _context.Manufacturers
+            .AsNoTracking()
+            .ToList();
     }
 }

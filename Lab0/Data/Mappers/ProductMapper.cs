@@ -12,13 +12,15 @@ public static class ProductMapper
             Id = entity.Id,
             Name = entity.Name,
             Price = entity.Price,
-            Manufacturer = entity.Manufacturer,
+            ManufacturerId = entity.ManufacturerId,
+            ManufacturerName = entity.ManufacturerEntity?.Name,
             ProductionDate = entity.ProductionDate,
             Description = entity.Description,
             Category = entity.Category,
             Created = entity.Created
         };
     }
+
 
     public static ProductEntity ToEntity(Product model)
     {
@@ -27,7 +29,7 @@ public static class ProductMapper
             Id = model.Id,
             Name = model.Name,
             Price = model.Price,
-            Manufacturer = model.Manufacturer,
+            ManufacturerId = model.ManufacturerId,
             ProductionDate = model.ProductionDate,
             Description = model.Description,
             Category = model.Category,

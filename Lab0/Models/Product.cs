@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lab0.Models;
 
@@ -17,10 +19,6 @@ public class Product
     [Display(Name = "Cena")]
     public decimal Price { get; set; }
 
-    [Required]
-    [Display(Name = "Producent")]
-    public string Manufacturer { get; set; }
-
     [DataType(DataType.Date)]
     [Display(Name = "Data produkcji")]
     public DateTime ProductionDate { get; set; }
@@ -34,4 +32,13 @@ public class Product
 
     [HiddenInput]
     public DateTime Created { get; set; }
+    
+    [HiddenInput]
+    public int ManufacturerId { get; set; }
+
+    [ValidateNever]
+    public List<SelectListItem> Manufacturers { get; set; } = new();
+    
+    [Display(Name = "Producent")]
+    public string? ManufacturerName { get; set; }
 }

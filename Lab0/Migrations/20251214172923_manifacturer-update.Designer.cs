@@ -3,6 +3,7 @@ using System;
 using Lab0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab0.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251214172923_manifacturer-update")]
+    partial class manifacturerupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
@@ -99,7 +102,7 @@ namespace Lab0.Migrations
                         {
                             Id = 1,
                             Category = 0,
-                            Created = new DateTime(2025, 12, 14, 18, 35, 4, 250, DateTimeKind.Local).AddTicks(3910),
+                            Created = new DateTime(2025, 12, 14, 18, 29, 22, 598, DateTimeKind.Local).AddTicks(2150),
                             Description = "Business laptop",
                             ManufacturerId = 2,
                             Name = "Laptop",
@@ -110,7 +113,7 @@ namespace Lab0.Migrations
                         {
                             Id = 2,
                             Category = 0,
-                            Created = new DateTime(2025, 12, 14, 18, 35, 4, 264, DateTimeKind.Local).AddTicks(1840),
+                            Created = new DateTime(2025, 12, 14, 18, 29, 22, 609, DateTimeKind.Local).AddTicks(6590),
                             Description = "Laser printer",
                             ManufacturerId = 3,
                             Name = "Printer",

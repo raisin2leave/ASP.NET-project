@@ -7,6 +7,10 @@ namespace Lab0.Data.Entities;
 [Table("products")]
 public class ProductEntity
 {
+    public int ManufacturerId { get; set; }
+
+    [ForeignKey("ManufacturerId")]
+    public ManufacturerEntity? ManufacturerEntity { get; set; }
     public int Id { get; set; }
 
     [Required]
@@ -15,10 +19,6 @@ public class ProductEntity
 
     [Required]
     public decimal Price { get; set; }
-
-    [Required]
-    [MaxLength(100)]
-    public string Manufacturer { get; set; } = string.Empty;
 
     [Column("production_date")]
     public DateTime ProductionDate { get; set; }
