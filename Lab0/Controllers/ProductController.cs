@@ -8,14 +8,29 @@ namespace Lab0.Controllers;
 public class ProductController : Controller
 {
     private readonly IProductService _service;
+    private const int PageSize = 10;
 
     public ProductController(IProductService service)
     {
         _service = service;
     }
 
-    public IActionResult Index() => View(_service.GetAll());
-    
+    public IActionResult Index(int page = 1)
+    {
+        var allProducts = _service.GetAll();
+        var totalItems = allProducts.Count;
+
+        var products = allProducts
+            .Skip((page - 1) * PageSize)
+            .Take(PageSize)
+            .ToList();
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = (int)Math.Ceiling(totalItems / (double)PageSize);
+
+        return View(products);
+    }
+
     [HttpGet]
     public IActionResult Create()
     {
@@ -36,7 +51,7 @@ public class ProductController : Controller
         _service.Add(model);
         return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     public IActionResult Edit(int id)
     {
@@ -59,14 +74,14 @@ public class ProductController : Controller
         _service.Update(model);
         return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     public IActionResult Details(int id)
     {
         var product = _service.GetById(id);
         return product == null ? NotFound() : View(product);
     }
-    
+
     [HttpGet]
     public IActionResult Delete(int id)
     {

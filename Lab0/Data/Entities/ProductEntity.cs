@@ -7,10 +7,6 @@ namespace Lab0.Data.Entities;
 [Table("products")]
 public class ProductEntity
 {
-    public int ManufacturerId { get; set; }
-
-    [ForeignKey("ManufacturerId")]
-    public ManufacturerEntity? ManufacturerEntity { get; set; }
     public int Id { get; set; }
 
     [Required]
@@ -30,4 +26,10 @@ public class ProductEntity
     public ProductCategory Category { get; set; }
 
     public DateTime Created { get; set; }
+
+    // Foreign Key
+    public int ManufacturerId { get; set; }
+
+    [ForeignKey("ManufacturerId")]
+    public ManufacturerEntity? ManufacturerEntity { get; set; }
 }

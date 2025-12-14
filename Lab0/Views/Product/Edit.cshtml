@@ -28,11 +28,11 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="ManufacturerId" class="form-label">Producent</label>
-                    <select asp-for="ManufacturerId" asp-items="@Model.Manufacturers" class="form-control">
-                        <option value="">Wybierz producenta</option>
-                    </select>
+                    <label asp-for="ManufacturerId" class="form-label"></label>
+                    <select asp-for="ManufacturerId" asp-items="@Model.Manufacturers" class="form-control"></select>
                     <span asp-validation-for="ManufacturerId" class="text-danger"></span>
+
+                    <a asp-controller="Manufacturer" asp-action="Create" class="btn btn-link mt-1">Dodaj nowego producenta</a>
                 </div>
 
                 <div class="mb-3">

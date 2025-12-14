@@ -1,0 +1,29 @@
+@model IEnumerable<Lab0.Models.ManufacturerModel>
+
+@{
+    ViewBag.Title = "Lista producentów";
+    Layout = "_Layout";
+}
+
+<h2>Lista producentów</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nazwa producenta</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var manufacturer in Model)
+    {
+        <tr>
+            <td>@manufacturer.Id</td>
+            <td>@manufacturer.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Dodaj nowego producenta</a>
+<a asp-controller="Product" asp-action="Create" class="btn btn-secondary">Dodaj nowy produkt</a>

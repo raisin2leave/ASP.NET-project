@@ -17,6 +17,7 @@ public class Program
         
         builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
         builder.Services.AddScoped<IProductService, EFProductService>();
+        builder.Services.AddScoped<IManufacturerService, EFManufacturerService>();
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(
                 builder.Configuration.GetConnectionString("DefaultConnection")

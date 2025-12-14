@@ -19,9 +19,9 @@ public class AppDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         
         modelBuilder.Entity<ManufacturerEntity>().HasData(
-            new ManufacturerEntity { Id = 1, Name = "Default Manufacturer", Country = "Poland" },
-            new ManufacturerEntity { Id = 2, Name = "Dell", Country = "USA" },
-            new ManufacturerEntity { Id = 3, Name = "HP", Country = "USA" }
+            new ManufacturerEntity { Id = 1, Name = "Default Manufacturer"},
+            new ManufacturerEntity { Id = 2, Name = "Dell",},
+            new ManufacturerEntity { Id = 3, Name = "HP" }
         );
         
         modelBuilder.Entity<ProductEntity>().HasData(
@@ -30,9 +30,10 @@ public class AppDbContext : DbContext
                 Id = 1,
                 Name = "Laptop",
                 Price = 4500,
-                ManufacturerId = 2, // Dell
+                ManufacturerId = 2, 
                 ProductionDate = new DateTime(2023, 5, 10),
                 Description = "Business laptop",
+                Category = Models.ProductCategory.Electronics,
                 Created = DateTime.Now
             },
             new ProductEntity
@@ -40,9 +41,10 @@ public class AppDbContext : DbContext
                 Id = 2,
                 Name = "Printer",
                 Price = 1200,
-                ManufacturerId = 3, // HP
+                ManufacturerId = 3,
                 ProductionDate = new DateTime(2022, 11, 5),
                 Description = "Laser printer",
+                Category = Models.ProductCategory.Electronics,
                 Created = DateTime.Now
             }
         );
@@ -50,6 +52,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<ProductEntity>()
             .HasOne(p => p.ManufacturerEntity)
             .WithMany(m => m.Products)
-            .HasForeignKey(p => p.ManufacturerId); 
+            .HasForeignKey(p => p.ManufacturerId)
+            .OnDelete(DeleteBehavior.Restrict); 
     }
 }
